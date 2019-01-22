@@ -1,25 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
   def new
     @user = User.new
   end
-
-  # GET /users/1/edit
-  def edit
-  end
-
+  
   def create
     @user = User.new(user_params)
     if @user.save
@@ -30,22 +14,25 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  def edit
+  end
+  
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      flash[:success] = "Your account was updated successfully"
+      redirect_to articles_path
+    else
+      
     end
   end
+  
+  def index
+    @users = User.all
+  end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+  def show
+  end
+
   def destroy
     @user.destroy
     respond_to do |format|
@@ -55,6 +42,9 @@ class UsersController < ApplicationController
   end
 
   private
+    def set_user
+      @user = User.find(params[:id])
+    end
     def user_params
       params.require(:user).permit(:username, :email, :password)
     end
