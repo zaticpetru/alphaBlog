@@ -14,7 +14,8 @@
   end
   
   def create
-    @article = Article.new(article_params);
+    @article = Article.new(article_params)
+    @article.user = User.first
     if @article.save
       flash[:success] = "Article was succesfully created"
       redirect_to article_path(@article)
@@ -24,7 +25,6 @@
   end
   
   def update 
-
     if @article.update(article_params)
       flash[:success] = "Article was succesfully update"
       redirect_to article_path(@article)
