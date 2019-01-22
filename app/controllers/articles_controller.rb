@@ -5,7 +5,7 @@
     @articles = Article.all
   end
   
-  def newgit
+  def new
     @article = Article.new
   end
   
