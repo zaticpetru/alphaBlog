@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :comments
-  resources :users, except: [:new, :destroy]
+  resources :users, except: [:new]
   root 'pages#home'
 
   get '/about', to: 'pages#about'
