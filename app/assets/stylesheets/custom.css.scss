@@ -97,7 +97,12 @@ footer ul li {
   }
 }
 
-// a:hover{
-//   color: #000 !important;
-//   background-color: transparent !important; 
-// }
+.badge a {
+  color: white !important;
+  background: transparent !important;
+}
+
+.input_checkbox input {
+  width: auto !important;
+  
+}
